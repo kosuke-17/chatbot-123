@@ -64,7 +64,7 @@ const FormDialog = (props) => {
                 method: 'POST',
                 body: JSON.stringify(payload)
             }).then(() => {
-                alert('送信が完了しました。')
+                alert('送信が完了しました。');
                 setDescription("")
                 setEmail("")
                 setName("")

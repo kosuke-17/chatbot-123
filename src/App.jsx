@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import './assets/styles/style.css'
 import { AnswersList, Chats } from './components/index';
 import FormDialog from './components/Forms/FormDialog';
@@ -30,7 +30,7 @@ const App = () => {
           a.click();
           break;
         case (nextQuestionId === 'contact'):
-          handleClickOpen ();
+          handleOpen();
           break;
         default:
 
@@ -44,15 +44,15 @@ const App = () => {
           }
       }
 
-  const addChats = (chat) => {
+  const addChats = useCallback((chat) => {
     setChats(prevChats => {
       return [...prevChats, chat]
     })
-  }
+  },[setChats]);
 
-  const handleClickOpen = () => {
+  const handleOpen = useCallback(() => {
     setOpen(true)
-  }
+  },[setOpen]);
 
   const handleClose = useCallback(() => {
     setOpen(false)
@@ -72,7 +72,7 @@ const App = () => {
       setDataset(initDataset)
       displayNextQuestion(currentId, initDataset[currentId])
     })()
-  }, [])
+  },[])
 
   useEffect(() => {
     const scrollArea = document.getElementById('scroll-area')
